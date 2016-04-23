@@ -200,32 +200,9 @@ import&nbsp;React&nbsp;from&nbsp;'react'<br/>import&nbsp;FilterLink&nbsp;from&nb
         <div class="box">
           components/Link.js<br/><br/>
 
-          import React, { PropTypes } from 'react'<br/><br/>
 
-          const Link = ({ active, children, onClick }) => {<br/>
-            if (active) {<br/>
-              return <span>{children}</span><br/>
-            }<br/><br/>
+import&nbsp;React,&nbsp;{&nbsp;PropTypes&nbsp;}&nbsp;from&nbsp;'react'<br/><br/>const&nbsp;Link&nbsp;=&nbsp;({&nbsp;active,&nbsp;children,&nbsp;onClick&nbsp;})&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;if&nbsp;(active)&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;&lt;span&gt;{children}&lt;/span&gt;<br/>&nbsp;&nbsp;}<br/><br/>&nbsp;&nbsp;return&nbsp;(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#&quot;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onClick={e&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.preventDefault()<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onClick()<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{children}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br/>&nbsp;&nbsp;)<br/>}<br/><br/>Link.propTypes&nbsp;=&nbsp;{<br/>&nbsp;&nbsp;active:&nbsp;PropTypes.bool.isRequired,<br/>&nbsp;&nbsp;children:&nbsp;PropTypes.node.isRequired,<br/>&nbsp;&nbsp;onClick:&nbsp;PropTypes.func.isRequired<br/>}<br/><br/>export&nbsp;default&nbsp;Link
 
-            return (<br/>
-              <a href="#"<br/>
-                 onClick={e => {<br/>
-                   e.preventDefault()<br/>
-                   onClick()<br/>
-                 }}<br/>
-              ><br/>
-                {children}<br/>
-              </a><br/>
-            )<br/>
-          }<br/>
-        <br/>
-          Link.propTypes = {<br/>
-            active: PropTypes.bool.isRequired,<br/>
-            children: PropTypes.node.isRequired,<br/>
-            onClick: PropTypes.func.isRequired<br/>
-          }<br/>
-        <br/>
-          export default Link<br/>
         </div>
 
 
