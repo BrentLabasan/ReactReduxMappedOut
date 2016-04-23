@@ -146,6 +146,40 @@ const&nbsp;visibilityFilter&nbsp;=&nbsp;(state&nbsp;=&nbsp;'SHOW_ALL',&nbsp;acti
 
       </td>
 
+
+
+      <td class="col5">
+
+<h2>Container Components</h2>
+
+<div class="box aspectFilter">
+  containers/FilterLink.js<br/>
+<br/>
+import&nbsp;{&nbsp;connect&nbsp;}&nbsp;from&nbsp;'react-redux'<br/>import&nbsp;{&nbsp;setVisibilityFilter&nbsp;}&nbsp;from&nbsp;'../actions'<br/>import&nbsp;Link&nbsp;from&nbsp;'../components/Link'<br/><br/>const&nbsp;mapStateToProps&nbsp;=&nbsp;(state,&nbsp;ownProps)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;return&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;active:&nbsp;ownProps.filter&nbsp;===&nbsp;state.visibilityFilter<br/>&nbsp;&nbsp;}<br/>}<br/><br/>const&nbsp;mapDispatchToProps&nbsp;=&nbsp;(dispatch,&nbsp;ownProps)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;return&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;onClick:&nbsp;()&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dispatch(setVisibilityFilter(ownProps.filter))<br/>&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;}<br/>}<br/><br/>const&nbsp;FilterLink&nbsp;=&nbsp;connect(<br/>&nbsp;&nbsp;mapStateToProps,<br/>&nbsp;&nbsp;mapDispatchToProps<br/>)(Link)<br/><br/>export&nbsp;default&nbsp;FilterLink
+
+</div>
+<br/>
+        <div class="box aspectList">
+          containers/VisibleTodoList.js<br/>
+        <br/>
+
+import&nbsp;{&nbsp;connect&nbsp;}&nbsp;from&nbsp;'react-redux'<br/>import&nbsp;{&nbsp;toggleTodo&nbsp;}&nbsp;from&nbsp;'../actions'<br/>import&nbsp;TodoList&nbsp;from&nbsp;'../components/TodoList'<br/><br/>const&nbsp;getVisibleTodos&nbsp;=&nbsp;(todos,&nbsp;filter)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;switch&nbsp;(filter)&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'SHOW_ALL':<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;todos<br/>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'SHOW_COMPLETED':<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;todos.filter(t&nbsp;=&gt;&nbsp;t.completed)<br/>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'SHOW_ACTIVE':<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;todos.filter(t&nbsp;=&gt;&nbsp;!t.completed)<br/>&nbsp;&nbsp;}<br/>}<br/><br/>const&nbsp;mapStateToProps&nbsp;=&nbsp;(state)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;return&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;todos:&nbsp;getVisibleTodos(state.todos,&nbsp;state.visibilityFilter)<br/>&nbsp;&nbsp;}<br/>}<br/><br/>const&nbsp;mapDispatchToProps&nbsp;=&nbsp;(dispatch)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;return&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;onTodoClick:&nbsp;(id)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dispatch(toggleTodo(id))<br/>&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;}<br/>}<br/><br/>const&nbsp;VisibleTodoList&nbsp;=&nbsp;connect(<br/>&nbsp;&nbsp;mapStateToProps,<br/>&nbsp;&nbsp;mapDispatchToProps<br/>)(TodoList)<br/><br/>export&nbsp;default&nbsp;VisibleTodoList
+
+        </div>
+
+
+
+      </td>
+
+      <td class="col5">
+<h2>Other Components</h2>
+        <div class="box aspectAddTodo">
+          containers/AddTodo.js<br/>
+        <br/>
+
+import&nbsp;React&nbsp;from&nbsp;'react'<br/>import&nbsp;{&nbsp;connect&nbsp;}&nbsp;from&nbsp;'react-redux'<br/>import&nbsp;{&nbsp;addTodo&nbsp;}&nbsp;from&nbsp;'../actions'<br/><br/>let&nbsp;AddTodo&nbsp;=&nbsp;({&nbsp;dispatch&nbsp;})&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;let&nbsp;input<br/><br/>&nbsp;&nbsp;return&nbsp;(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;form&nbsp;onSubmit={e&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.preventDefault()<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!input.value.trim())&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dispatch(addTodo(input.value))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input.value&nbsp;=&nbsp;''<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}}&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;ref={node&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input&nbsp;=&nbsp;node<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}}&nbsp;/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button&nbsp;type=&quot;submit&quot;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add&nbsp;Todo<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/button&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>&nbsp;&nbsp;)<br/>}<br/>AddTodo&nbsp;=&nbsp;connect()(AddTodo)<br/><br/>export&nbsp;default&nbsp;AddTodo
+      </td>
+
       <td class="col5">
         <h2>Presentation Components</h2>
 
@@ -189,38 +223,6 @@ import&nbsp;React,&nbsp;{&nbsp;PropTypes&nbsp;}&nbsp;from&nbsp;'react'<br/><br/>
 
 
 
-      </td>
-
-      <td class="col5">
-
-<h2>Container Components</h2>
-
-<div class="box aspectFilter">
-  containers/FilterLink.js<br/>
-<br/>
-import&nbsp;{&nbsp;connect&nbsp;}&nbsp;from&nbsp;'react-redux'<br/>import&nbsp;{&nbsp;setVisibilityFilter&nbsp;}&nbsp;from&nbsp;'../actions'<br/>import&nbsp;Link&nbsp;from&nbsp;'../components/Link'<br/><br/>const&nbsp;mapStateToProps&nbsp;=&nbsp;(state,&nbsp;ownProps)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;return&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;active:&nbsp;ownProps.filter&nbsp;===&nbsp;state.visibilityFilter<br/>&nbsp;&nbsp;}<br/>}<br/><br/>const&nbsp;mapDispatchToProps&nbsp;=&nbsp;(dispatch,&nbsp;ownProps)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;return&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;onClick:&nbsp;()&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dispatch(setVisibilityFilter(ownProps.filter))<br/>&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;}<br/>}<br/><br/>const&nbsp;FilterLink&nbsp;=&nbsp;connect(<br/>&nbsp;&nbsp;mapStateToProps,<br/>&nbsp;&nbsp;mapDispatchToProps<br/>)(Link)<br/><br/>export&nbsp;default&nbsp;FilterLink
-
-</div>
-<br/>
-        <div class="box aspectList">
-          containers/VisibleTodoList.js<br/>
-        <br/>
-
-import&nbsp;{&nbsp;connect&nbsp;}&nbsp;from&nbsp;'react-redux'<br/>import&nbsp;{&nbsp;toggleTodo&nbsp;}&nbsp;from&nbsp;'../actions'<br/>import&nbsp;TodoList&nbsp;from&nbsp;'../components/TodoList'<br/><br/>const&nbsp;getVisibleTodos&nbsp;=&nbsp;(todos,&nbsp;filter)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;switch&nbsp;(filter)&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'SHOW_ALL':<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;todos<br/>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'SHOW_COMPLETED':<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;todos.filter(t&nbsp;=&gt;&nbsp;t.completed)<br/>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'SHOW_ACTIVE':<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;todos.filter(t&nbsp;=&gt;&nbsp;!t.completed)<br/>&nbsp;&nbsp;}<br/>}<br/><br/>const&nbsp;mapStateToProps&nbsp;=&nbsp;(state)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;return&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;todos:&nbsp;getVisibleTodos(state.todos,&nbsp;state.visibilityFilter)<br/>&nbsp;&nbsp;}<br/>}<br/><br/>const&nbsp;mapDispatchToProps&nbsp;=&nbsp;(dispatch)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;return&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;onTodoClick:&nbsp;(id)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dispatch(toggleTodo(id))<br/>&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;}<br/>}<br/><br/>const&nbsp;VisibleTodoList&nbsp;=&nbsp;connect(<br/>&nbsp;&nbsp;mapStateToProps,<br/>&nbsp;&nbsp;mapDispatchToProps<br/>)(TodoList)<br/><br/>export&nbsp;default&nbsp;VisibleTodoList
-
-        </div>
-
-
-
-      </td>
-
-      <td class="col5">
-<h2>Other Components</h2>
-        <div class="box aspectAddTodo">
-          containers/AddTodo.js<br/>
-        <br/>
-
-import&nbsp;React&nbsp;from&nbsp;'react'<br/>import&nbsp;{&nbsp;connect&nbsp;}&nbsp;from&nbsp;'react-redux'<br/>import&nbsp;{&nbsp;addTodo&nbsp;}&nbsp;from&nbsp;'../actions'<br/><br/>let&nbsp;AddTodo&nbsp;=&nbsp;({&nbsp;dispatch&nbsp;})&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;let&nbsp;input<br/><br/>&nbsp;&nbsp;return&nbsp;(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;form&nbsp;onSubmit={e&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.preventDefault()<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!input.value.trim())&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dispatch(addTodo(input.value))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input.value&nbsp;=&nbsp;''<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}}&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;ref={node&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input&nbsp;=&nbsp;node<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}}&nbsp;/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button&nbsp;type=&quot;submit&quot;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add&nbsp;Todo<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/button&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>&nbsp;&nbsp;)<br/>}<br/>AddTodo&nbsp;=&nbsp;connect()(AddTodo)<br/><br/>export&nbsp;default&nbsp;AddTodo
       </td>
 
     </tr>
