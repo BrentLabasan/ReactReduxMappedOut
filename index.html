@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+
+<style>
+* {
+  font-family: monospace;
+}
+
+.box {
+
+  border-style: solid;
+    border-width: 1px;
+    /*display: inline-block;*/
+overflow: hidden;
+max-width: 500px;
+}
+
+table  {
+  /*border-style: solid;*/
+    /*border-width: 1px;*/
+    /*background-color: red;*/
+    width: 100%;
+}
+
+tr {
+  /*border-style: solid;*/
+    /*border-width: 1px;*/
+    width: 100%;
+    /*background-color: blue;*/
+    padding: 10px;
+
+}
+
+td  {
+  /*border-style: solid;*/
+    /*border-width: 1px;*/
+    /*background-color: orange;*/
+    padding: 10px;
+
+
+}
+
+.col5 {
+  width: 20%;
+  vertical-align: top;
+}
+
+.minimized {
+  height: 15px;
+}
+
+.minimizedHorizontally {
+  width: 5%;
+}
+
+</style>
+</head>
+
+<body>
+
+<div style="text-align: center">
+  <h2>Entry Point</h2>
+  <div class="box" style="display: inline-block;">
+
+
+    index.js<br/><br/>
+
+    import React from 'react'<br/>
+    import { render } from 'react-dom'<br/>
+    import { Provider } from 'react-redux'<br/>
+    import { createStore } from 'redux'<br/>
+    <br/>
+    import todoApp from './reducers'<br/>
+    import App from './components/App'<br/><br/>
+
+    let store = createStore(todoApp)<br/><br/>
+
+    render(<br/>
+      &lt;Provider store={store}&gt;<br/>
+        &lt;App /&gt;<br/>
+      &lt;/Provider&gt;,<br/>
+      document.getElementById('root')<br/>
+    )
+  </div>
+</div>
+  <table>
+
+
+    <tr>
+
+      <td class="col5">
+        <h2>Action Creators</h2>
+        <div class="box">
+          actions/index.js<br/><br/>
+
+let&nbsp;nextTodoId&nbsp;=&nbsp;0<br/>export&nbsp;const&nbsp;addTodo&nbsp;=&nbsp;(text)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;return&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;'ADD_TODO',<br/>&nbsp;&nbsp;&nbsp;&nbsp;id:&nbsp;nextTodoId++,<br/>&nbsp;&nbsp;&nbsp;&nbsp;text<br/>&nbsp;&nbsp;}<br/>}<br/><br/>export&nbsp;const&nbsp;setVisibilityFilter&nbsp;=&nbsp;(filter)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;return&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;'SET_VISIBILITY_FILTER',<br/>&nbsp;&nbsp;&nbsp;&nbsp;filter<br/>&nbsp;&nbsp;}<br/>}<br/><br/>export&nbsp;const&nbsp;toggleTodo&nbsp;=&nbsp;(id)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;return&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;'TOGGLE_TODO',<br/>&nbsp;&nbsp;&nbsp;&nbsp;id<br/>&nbsp;&nbsp;}<br/>}
+        </div>
+      </td>
+
+      <td class="col5">
+        <h2>Reducers</h2>
+
+        <div class="box">
+          reducers/index.js<br/><br/>
+
+import&nbsp;{&nbsp;combineReducers&nbsp;}&nbsp;from&nbsp;'redux'<br/>import&nbsp;todos&nbsp;from&nbsp;'./todos'<br/>import&nbsp;visibilityFilter&nbsp;from&nbsp;'./visibilityFilter'<br/><br/>const&nbsp;todoApp&nbsp;=&nbsp;combineReducers({<br/>&nbsp;&nbsp;todos,<br/>&nbsp;&nbsp;visibilityFilter<br/>})<br/><br/>export&nbsp;default&nbsp;todoApp
+  </div>
+<br/><br/>
+        <div class="box">
+          reducers/todos.js<br/><br/>
+
+        const&nbsp;todo&nbsp;=&nbsp;(state,&nbsp;action)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;switch&nbsp;(action.type)&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'ADD_TODO':<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id:&nbsp;action.id,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text:&nbsp;action.text,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;completed:&nbsp;false<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'TOGGLE_TODO':<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(state.id&nbsp;!==&nbsp;action.id)&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;state<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;Object.assign({},&nbsp;state,&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;completed:&nbsp;!state.completed<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;})<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;default:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;state<br/>&nbsp;&nbsp;}<br/>}<br/><br/>const&nbsp;todos&nbsp;=&nbsp;(state&nbsp;=&nbsp;[],&nbsp;action)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;switch&nbsp;(action.type)&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'ADD_TODO':<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;[<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...state,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;todo(undefined,&nbsp;action)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;]<br/>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'TOGGLE_TODO':<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;state.map(t&nbsp;=&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;todo(t,&nbsp;action)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>&nbsp;&nbsp;&nbsp;&nbsp;default:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;state<br/>&nbsp;&nbsp;}<br/>}<br/><br/>export&nbsp;default&nbsp;todos
+        </div>
+
+        <div class="box">
+          reducers/visibilityFilter.js<br/><br/>
+
+const&nbsp;visibilityFilter&nbsp;=&nbsp;(state&nbsp;=&nbsp;'SHOW_ALL',&nbsp;action)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;switch&nbsp;(action.type)&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'SET_VISIBILITY_FILTER':<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;action.filter<br/>&nbsp;&nbsp;&nbsp;&nbsp;default:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;state<br/>&nbsp;&nbsp;}<br/>}<br/><br/>export&nbsp;default&nbsp;visibilityFilter
+        </div>
+
+
+
+      </td>
+
+      <td class="col5">
+        <h2>Presentation Components</h2>
+        <div class="box">
+          components/Todo.js<br/><br/>
+
+          import React, { PropTypes } from 'react'<br/><br/>
+
+          const Todo = ({ onClick, completed, text }) => (<br/>
+            <li<br/>
+              onClick={onClick}<br/>
+              style={{<br/>
+                textDecoration: completed ? 'line-through' : 'none'<br/>
+              }}<br/>
+            ><br/>
+              {text}<br/>
+            </li><br/>
+          )<br/><br/>
+
+          Todo.propTypes = {<br/>
+            onClick: PropTypes.func.isRequired,<br/>
+            completed: PropTypes.bool.isRequired,<br/>
+            text: PropTypes.string.isRequired<br/>
+          }<br/><br/>
+
+          export default Todo<br/>
+        </div>
+
+        <div class="box">
+          components/TodoList.js<br/><br/>
+
+          import React, { PropTypes } from 'react'<br/>
+          import Todo from './Todo'<br/><br/>
+
+          const TodoList = ({ todos, onTodoClick }) => (<br/>
+            <ul><br/>
+              {todos.map(todo =><br/>
+                <Todo<br/>
+                  key={todo.id}<br/>
+                  {...todo}<br/>
+                  onClick={() => onTodoClick(todo.id)}<br/>
+                /><br/>
+              )}<br/>
+            </ul><br/>
+          )<br/><br/>
+
+          TodoList.propTypes = {<br/>
+            todos: PropTypes.arrayOf(PropTypes.shape({<br/>
+              id: PropTypes.number.isRequired,<br/>
+              completed: PropTypes.bool.isRequired,<br/>
+              text: PropTypes.string.isRequired<br/>
+            }).isRequired).isRequired,<br/>
+            onTodoClick: PropTypes.func.isRequired<br/>
+          }<br/><br/>
+
+          export default TodoList<br/>
+        </div>
+
+        <div class="box">
+          components/Link.js<br/><br/>
+
+          import React, { PropTypes } from 'react'<br/><br/>
+
+          const Link = ({ active, children, onClick }) => {<br/>
+            if (active) {<br/>
+              return <span>{children}</span><br/>
+            }<br/><br/>
+
+            return (<br/>
+              <a href="#"<br/>
+                 onClick={e => {<br/>
+                   e.preventDefault()<br/>
+                   onClick()<br/>
+                 }}<br/>
+              ><br/>
+                {children}<br/>
+              </a><br/>
+            )<br/>
+          }<br/>
+        <br/>
+          Link.propTypes = {<br/>
+            active: PropTypes.bool.isRequired,<br/>
+            children: PropTypes.node.isRequired,<br/>
+            onClick: PropTypes.func.isRequired<br/>
+          }<br/>
+        <br/>
+          export default Link<br/>
+        </div>
+
+        <div class="box">
+          components/Footer.js<br/>
+        <br/>
+          import React from 'react'<br/>
+          import FilterLink from '../containers/FilterLink'<br/>
+        <br/>
+          const Footer = () => (<br/>
+            <p><br/>
+              Show:<br/>
+              {" "}<br/>
+              <FilterLink filter="SHOW_ALL"><br/>
+                All<br/>
+              </FilterLink><br/>
+              {", "}<br/>
+              <FilterLink filter="SHOW_ACTIVE"><br/>
+                Active<br/>
+              </FilterLink><br/>
+              {", "}<br/>
+              <FilterLink filter="SHOW_COMPLETED"><br/>
+                Completed<br/>
+              </FilterLink><br/>
+            </p><br/>
+          )<br/>
+        <br/>
+          export default Footer<br/>
+        </div>
+
+        <div class="box">
+          components/App.js<br/>
+        <br/>
+          import React from 'react'<br/>
+          import Footer from './Footer'<br/>
+          import AddTodo from '../containers/AddTodo'<br/>
+          import VisibleTodoList from '../containers/VisibleTodoList'<br/>
+        <br/>
+          const App = () => (<br/>
+            <div><br/>
+              <AddTodo /><br/>
+              <VisibleTodoList /><br/>
+              <Footer /><br/>
+            </div><br/>
+          )<br/>
+        <br/>
+          export default App<br/>
+        </div>
+
+      </td>
+
+      <td class="col5">
+
+<h2>Container Components</h2>
+
+        <div class="box">
+          containers/VisibleTodoList.js<br/>
+        <br/>
+          import { connect } from 'react-redux'<br/>
+          import { toggleTodo } from '../actions'<br/>
+          import TodoList from '../components/TodoList'<br/>
+        <br/>
+          const getVisibleTodos = (todos, filter) => {<br/>
+            switch (filter) {<br/>
+              case 'SHOW_ALL':<br/>
+                return todos<br/>
+              case 'SHOW_COMPLETED':<br/>
+                return todos.filter(t => t.completed)<br/>
+              case 'SHOW_ACTIVE':<br/>
+                return todos.filter(t => !t.completed)<br/>
+            }<br/>
+          }<br/>
+        <br/>
+          const mapStateToProps = (state) => {<br/>
+            return {<br/>
+              todos: getVisibleTodos(state.todos, state.visibilityFilter)<br/>
+            }<br/>
+          }<br/>
+        <br/>
+          const mapDispatchToProps = (dispatch) => {<br/>
+            return {<br/>
+              onTodoClick: (id) => {<br/>
+                dispatch(toggleTodo(id))<br/>
+              }<br/>
+            }<br/>
+          }<br/>
+        <br/>
+          const VisibleTodoList = connect(<br/>
+            mapStateToProps,<br/>
+            mapDispatchToProps<br/>
+          )(TodoList)<br/>
+        <br/>
+          export default VisibleTodoList<br/>
+        </div>
+
+        <div class="box">
+          containers/FilterLink.js<br/>
+        <br/>
+          import { connect } from 'react-redux'<br/>
+          import { setVisibilityFilter } from '../actions'<br/>
+          import Link from '../components/Link'<br/>
+        <br/>
+          const mapStateToProps = (state, ownProps) => {<br/>
+            return {<br/>
+              active: ownProps.filter === state.visibilityFilter<br/>
+            }<br/>
+          }<br/>
+        <br/>
+          const mapDispatchToProps = (dispatch, ownProps) => {<br/>
+            return {<br/>
+              onClick: () => {<br/>
+                dispatch(setVisibilityFilter(ownProps.filter))<br/>
+              }<br/>
+            }<br/>
+          }<br/>
+        <br/>
+          const FilterLink = connect(<br/>
+            mapStateToProps,<br/>
+            mapDispatchToProps<br/>
+          )(Link)<br/>
+        <br/>
+          export default FilterLink<br/>
+        </div>
+
+      </td>
+
+      <td class="col5">
+<h2>Other Components</h2>
+        <div class="box">
+          containers/AddTodo.js<br/>
+        <br/>
+          import React from 'react'<br/>
+          import { connect } from 'react-redux'<br/>
+          import { addTodo } from '../actions'<br/>
+        <br/>
+          let AddTodo = ({ dispatch }) => {<br/>
+            let input<br/>
+        <br/>
+            return (<br/>
+              <div><br/>
+                <form onSubmit={e => {<br/>
+                  e.preventDefault()<br/>
+                  if (!input.value.trim()) {<br/>
+                    return<br/>
+                  }<br/>
+                  dispatch(addTodo(input.value))<br/>
+                  input.value = ''<br/>
+                }}><br/>
+                  <input ref={node => {<br/>
+                    input = node<br/>
+                  }} /><br/>
+                  <button type="submit"><br/>
+                    Add Todo<br/>
+                  </button><br/>
+                </form><br/>
+              </div><br/>
+            )<br/>
+          }<br/>
+          AddTodo = connect()(AddTodo)<br/>
+        <br/>
+          export default AddTodo
+        </div>
+      </td>
+
+    </tr>
+  </table>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+<script   src="https://code.jquery.com/jquery-2.2.3.min.js"   integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+$( document ).ready(function() {
+
+  $(".box").click(function(){
+    // console.log("clicked");
+    $( this ).toggleClass("minimized");
+  });
+
+  // $(".col5").click(function(){
+  //   // console.log("clicked");
+  //   $( this ).toggleClass("minimizedHorizontally");
+  // });
+
+
+
+});
+
+
+
+</script>
+</html>
