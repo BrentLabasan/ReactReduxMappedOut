@@ -16,6 +16,7 @@
     /*display: inline-block;*/
 overflow: hidden;
 max-width: 500px;
+padding: 20px;
 }
 
 table  {
@@ -49,7 +50,7 @@ td  {
 }
 
 .minimized {
-  height: 15px;
+  height: 10px;
 }
 
 .minimizedHorizontally {
@@ -137,7 +138,7 @@ import&nbsp;React&nbsp;from&nbsp;'react'<br/>import&nbsp;Footer&nbsp;from&nbsp;'
 
         <div class="box">
           components/Footer.js<br/>
-
+<br/>
 import&nbsp;React&nbsp;from&nbsp;'react'<br/>import&nbsp;FilterLink&nbsp;from&nbsp;'../containers/FilterLink'<br/><br/>const&nbsp;Footer&nbsp;=&nbsp;()&nbsp;=&gt;&nbsp;(<br/>&nbsp;&nbsp;&lt;p&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;Show:<br/>&nbsp;&nbsp;&nbsp;&nbsp;{&quot;&nbsp;&quot;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;FilterLink&nbsp;filter=&quot;SHOW_ALL&quot;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/FilterLink&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;{&quot;,&nbsp;&quot;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;FilterLink&nbsp;filter=&quot;SHOW_ACTIVE&quot;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Active<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/FilterLink&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;{&quot;,&nbsp;&quot;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;FilterLink&nbsp;filter=&quot;SHOW_COMPLETED&quot;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Completed<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/FilterLink&gt;<br/>&nbsp;&nbsp;&lt;/p&gt;<br/>)<br/><br/>export&nbsp;default&nbsp;Footer        </div>
 
         <br/><br/>
@@ -174,7 +175,7 @@ import&nbsp;React,&nbsp;{&nbsp;PropTypes&nbsp;}&nbsp;from&nbsp;'react'<br/><br/>
 
 <div class="box">
   containers/FilterLink.js<br/>
-
+<br/>
 import&nbsp;{&nbsp;connect&nbsp;}&nbsp;from&nbsp;'react-redux'<br/>import&nbsp;{&nbsp;setVisibilityFilter&nbsp;}&nbsp;from&nbsp;'../actions'<br/>import&nbsp;Link&nbsp;from&nbsp;'../components/Link'<br/><br/>const&nbsp;mapStateToProps&nbsp;=&nbsp;(state,&nbsp;ownProps)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;return&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;active:&nbsp;ownProps.filter&nbsp;===&nbsp;state.visibilityFilter<br/>&nbsp;&nbsp;}<br/>}<br/><br/>const&nbsp;mapDispatchToProps&nbsp;=&nbsp;(dispatch,&nbsp;ownProps)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;return&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;onClick:&nbsp;()&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dispatch(setVisibilityFilter(ownProps.filter))<br/>&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;}<br/>}<br/><br/>const&nbsp;FilterLink&nbsp;=&nbsp;connect(<br/>&nbsp;&nbsp;mapStateToProps,<br/>&nbsp;&nbsp;mapDispatchToProps<br/>)(Link)<br/><br/>export&nbsp;default&nbsp;FilterLink
 
 </div>
