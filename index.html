@@ -145,56 +145,13 @@ import&nbsp;React&nbsp;from&nbsp;'react'<br/>import&nbsp;FilterLink&nbsp;from&nb
         <div class="box">
           components/Todo.js<br/><br/>
 
-          import React, { PropTypes } from 'react'<br/><br/>
-
-          const Todo = ({ onClick, completed, text }) => (<br/>
-            <li<br/>
-              onClick={onClick}<br/>
-              style={{<br/>
-                textDecoration: completed ? 'line-through' : 'none'<br/>
-              }}<br/>
-            ><br/>
-              {text}<br/>
-            </li><br/>
-          )<br/><br/>
-
-          Todo.propTypes = {<br/>
-            onClick: PropTypes.func.isRequired,<br/>
-            completed: PropTypes.bool.isRequired,<br/>
-            text: PropTypes.string.isRequired<br/>
-          }<br/><br/>
-
-          export default Todo<br/>
+import&nbsp;React,&nbsp;{&nbsp;PropTypes&nbsp;}&nbsp;from&nbsp;'react'<br/><br/>const&nbsp;Todo&nbsp;=&nbsp;({&nbsp;onClick,&nbsp;completed,&nbsp;text&nbsp;})&nbsp;=&gt;&nbsp;(<br/>&nbsp;&nbsp;&lt;li<br/>&nbsp;&nbsp;&nbsp;&nbsp;onClick={onClick}<br/>&nbsp;&nbsp;&nbsp;&nbsp;style={{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textDecoration:&nbsp;completed&nbsp;?&nbsp;'line-through'&nbsp;:&nbsp;'none'<br/>&nbsp;&nbsp;&nbsp;&nbsp;}}<br/>&nbsp;&nbsp;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;{text}<br/>&nbsp;&nbsp;&lt;/li&gt;<br/>)<br/><br/>Todo.propTypes&nbsp;=&nbsp;{<br/>&nbsp;&nbsp;onClick:&nbsp;PropTypes.func.isRequired,<br/>&nbsp;&nbsp;completed:&nbsp;PropTypes.bool.isRequired,<br/>&nbsp;&nbsp;text:&nbsp;PropTypes.string.isRequired<br/>}<br/><br/>export&nbsp;default&nbsp;Todo
         </div>
 
         <div class="box">
           components/TodoList.js<br/><br/>
 
-          import React, { PropTypes } from 'react'<br/>
-          import Todo from './Todo'<br/><br/>
-
-          const TodoList = ({ todos, onTodoClick }) => (<br/>
-            <ul><br/>
-              {todos.map(todo =><br/>
-                <Todo<br/>
-                  key={todo.id}<br/>
-                  {...todo}<br/>
-                  onClick={() => onTodoClick(todo.id)}<br/>
-                /><br/>
-              )}<br/>
-            </ul><br/>
-          )<br/><br/>
-
-          TodoList.propTypes = {<br/>
-            todos: PropTypes.arrayOf(PropTypes.shape({<br/>
-              id: PropTypes.number.isRequired,<br/>
-              completed: PropTypes.bool.isRequired,<br/>
-              text: PropTypes.string.isRequired<br/>
-            }).isRequired).isRequired,<br/>
-            onTodoClick: PropTypes.func.isRequired<br/>
-          }<br/><br/>
-
-          export default TodoList<br/>
+import&nbsp;React,&nbsp;{&nbsp;PropTypes&nbsp;}&nbsp;from&nbsp;'react'<br/>import&nbsp;Todo&nbsp;from&nbsp;'./Todo'<br/><br/>const&nbsp;TodoList&nbsp;=&nbsp;({&nbsp;todos,&nbsp;onTodoClick&nbsp;})&nbsp;=&gt;&nbsp;(<br/>&nbsp;&nbsp;&lt;ul&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;{todos.map(todo&nbsp;=&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Todo<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key={todo.id}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{...todo}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onClick={()&nbsp;=&gt;&nbsp;onTodoClick(todo.id)}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;)}<br/>&nbsp;&nbsp;&lt;/ul&gt;<br/>)<br/><br/>TodoList.propTypes&nbsp;=&nbsp;{<br/>&nbsp;&nbsp;todos:&nbsp;PropTypes.arrayOf(PropTypes.shape({<br/>&nbsp;&nbsp;&nbsp;&nbsp;id:&nbsp;PropTypes.number.isRequired,<br/>&nbsp;&nbsp;&nbsp;&nbsp;completed:&nbsp;PropTypes.bool.isRequired,<br/>&nbsp;&nbsp;&nbsp;&nbsp;text:&nbsp;PropTypes.string.isRequired<br/>&nbsp;&nbsp;}).isRequired).isRequired,<br/>&nbsp;&nbsp;onTodoClick:&nbsp;PropTypes.func.isRequired<br/>}<br/><br/>export&nbsp;default&nbsp;TodoList
         </div>
 
         <div class="box">
