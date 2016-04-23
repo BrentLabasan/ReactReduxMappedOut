@@ -2,21 +2,41 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Title of the document</title>
+<title>Redux Mapped Out - by Brent Labasan </title>
 
 <style>
 * {
   font-family: monospace;
 }
 
-.box {
+body {
+  background-color: #F1F0F2;
+}
 
+.box {
+border-color: #999999;
   border-style: solid;
     border-width: 1px;
     /*display: inline-block;*/
 overflow: hidden;
 max-width: 500px;
 padding: 20px;
+background-color: white;
+}
+
+.aspectFilter  {
+
+    background-color: #908E29;
+}
+
+.aspectList  {
+
+    background-color: #D6D14E;
+}
+
+.aspectAddTodo  {
+
+    background-color: #EFE60B;
 }
 
 table  {
@@ -107,7 +127,7 @@ let&nbsp;nextTodoId&nbsp;=&nbsp;0<br/>export&nbsp;const&nbsp;addTodo&nbsp;=&nbsp
         <div class="box">
           reducers/index.js<br/><br/>
 
-import&nbsp;{&nbsp;combineReducers&nbsp;}&nbsp;from&nbsp;'redux'<br/>import&nbsp;todos&nbsp;from&nbsp;'./todos'<br/>import&nbsp;visibilityFilter&nbsp;from&nbsp;'./visibilityFilter'<br/><br/>const&nbsp;todoApp&nbsp;=&nbsp;combineReducers({<br/>&nbsp;&nbsp;todos,<br/>&nbsp;&nbsp;visibilityFilter<br/>})<br/><br/>export&nbsp;default&nbsp;todoApp
+import&nbsp;{&nbsp;combineReducers&nbsp;}&nbsp;from&nbsp;'redux'<br/><br/>import&nbsp;todos&nbsp;from&nbsp;'./todos'<br/>import&nbsp;visibilityFilter&nbsp;from&nbsp;'./visibilityFilter'<br/><br/>const&nbsp;todoApp&nbsp;=&nbsp;combineReducers({<br/>&nbsp;&nbsp;todos,<br/>&nbsp;&nbsp;visibilityFilter<br/>})<br/><br/>export&nbsp;default&nbsp;todoApp
   </div>
 <br/><br/>
         <div class="box">
@@ -133,35 +153,37 @@ const&nbsp;visibilityFilter&nbsp;=&nbsp;(state&nbsp;=&nbsp;'SHOW_ALL',&nbsp;acti
           components/App.js<br/>
         <br/>
 
-import&nbsp;React&nbsp;from&nbsp;'react'<br/>import&nbsp;Footer&nbsp;from&nbsp;'./Footer'<br/>import&nbsp;AddTodo&nbsp;from&nbsp;'../containers/AddTodo'<br/>import&nbsp;VisibleTodoList&nbsp;from&nbsp;'../containers/VisibleTodoList'<br/><br/>const&nbsp;App&nbsp;=&nbsp;()&nbsp;=&gt;&nbsp;(<br/>&nbsp;&nbsp;&lt;div&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;AddTodo&nbsp;/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;VisibleTodoList&nbsp;/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Footer&nbsp;/&gt;<br/>&nbsp;&nbsp;&lt;/div&gt;<br/>)<br/><br/>export&nbsp;default&nbsp;App
+import&nbsp;React&nbsp;from&nbsp;'react'<br/><br/>import&nbsp;Footer&nbsp;from&nbsp;'./Footer'<br/>import&nbsp;AddTodo&nbsp;from&nbsp;'../containers/AddTodo'<br/>import&nbsp;VisibleTodoList&nbsp;from&nbsp;'../containers/VisibleTodoList'<br/><br/>const&nbsp;App&nbsp;=&nbsp;()&nbsp;=&gt;&nbsp;(<br/>&nbsp;&nbsp;&lt;div&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;AddTodo&nbsp;/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;VisibleTodoList&nbsp;/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;Footer&nbsp;/&gt;<br/>&nbsp;&nbsp;&lt;/div&gt;<br/>)<br/><br/>export&nbsp;default&nbsp;App
         </div>
-
-        <div class="box">
+<br/>
+        <div class="box aspectFilter">
           components/Footer.js<br/>
 <br/>
-import&nbsp;React&nbsp;from&nbsp;'react'<br/>import&nbsp;FilterLink&nbsp;from&nbsp;'../containers/FilterLink'<br/><br/>const&nbsp;Footer&nbsp;=&nbsp;()&nbsp;=&gt;&nbsp;(<br/>&nbsp;&nbsp;&lt;p&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;Show:<br/>&nbsp;&nbsp;&nbsp;&nbsp;{&quot;&nbsp;&quot;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;FilterLink&nbsp;filter=&quot;SHOW_ALL&quot;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/FilterLink&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;{&quot;,&nbsp;&quot;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;FilterLink&nbsp;filter=&quot;SHOW_ACTIVE&quot;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Active<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/FilterLink&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;{&quot;,&nbsp;&quot;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;FilterLink&nbsp;filter=&quot;SHOW_COMPLETED&quot;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Completed<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/FilterLink&gt;<br/>&nbsp;&nbsp;&lt;/p&gt;<br/>)<br/><br/>export&nbsp;default&nbsp;Footer        </div>
+import&nbsp;React&nbsp;from&nbsp;'react'<br/><br/>import&nbsp;FilterLink&nbsp;from&nbsp;'../containers/FilterLink'<br/><br/>const&nbsp;Footer&nbsp;=&nbsp;()&nbsp;=&gt;&nbsp;(<br/>&nbsp;&nbsp;&lt;p&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;Show:<br/>&nbsp;&nbsp;&nbsp;&nbsp;{&quot;&nbsp;&quot;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;FilterLink&nbsp;filter=&quot;SHOW_ALL&quot;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;All<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/FilterLink&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;{&quot;,&nbsp;&quot;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;FilterLink&nbsp;filter=&quot;SHOW_ACTIVE&quot;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Active<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/FilterLink&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;{&quot;,&nbsp;&quot;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;FilterLink&nbsp;filter=&quot;SHOW_COMPLETED&quot;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Completed<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/FilterLink&gt;<br/>&nbsp;&nbsp;&lt;/p&gt;<br/>)<br/><br/>export&nbsp;default&nbsp;Footer
+    </div>
+
+    <div class="box aspectFilter">
+      components/Link.js<br/><br/>
+import&nbsp;React,&nbsp;{&nbsp;PropTypes&nbsp;}&nbsp;from&nbsp;'react'<br/><br/>const&nbsp;Link&nbsp;=&nbsp;({&nbsp;active,&nbsp;children,&nbsp;onClick&nbsp;})&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;if&nbsp;(active)&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;&lt;span&gt;{children}&lt;/span&gt;<br/>&nbsp;&nbsp;}<br/><br/>&nbsp;&nbsp;return&nbsp;(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#&quot;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onClick={e&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.preventDefault()<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onClick()<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{children}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br/>&nbsp;&nbsp;)<br/>}<br/><br/>Link.propTypes&nbsp;=&nbsp;{<br/>&nbsp;&nbsp;active:&nbsp;PropTypes.bool.isRequired,<br/>&nbsp;&nbsp;children:&nbsp;PropTypes.node.isRequired,<br/>&nbsp;&nbsp;onClick:&nbsp;PropTypes.func.isRequired<br/>}<br/><br/>export&nbsp;default&nbsp;Link
+    </div>
 
         <br/><br/>
 
-        <div class="box">
-          components/Todo.js<br/><br/>
 
-import&nbsp;React,&nbsp;{&nbsp;PropTypes&nbsp;}&nbsp;from&nbsp;'react'<br/><br/>const&nbsp;Todo&nbsp;=&nbsp;({&nbsp;onClick,&nbsp;completed,&nbsp;text&nbsp;})&nbsp;=&gt;&nbsp;(<br/>&nbsp;&nbsp;&lt;li<br/>&nbsp;&nbsp;&nbsp;&nbsp;onClick={onClick}<br/>&nbsp;&nbsp;&nbsp;&nbsp;style={{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textDecoration:&nbsp;completed&nbsp;?&nbsp;'line-through'&nbsp;:&nbsp;'none'<br/>&nbsp;&nbsp;&nbsp;&nbsp;}}<br/>&nbsp;&nbsp;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;{text}<br/>&nbsp;&nbsp;&lt;/li&gt;<br/>)<br/><br/>Todo.propTypes&nbsp;=&nbsp;{<br/>&nbsp;&nbsp;onClick:&nbsp;PropTypes.func.isRequired,<br/>&nbsp;&nbsp;completed:&nbsp;PropTypes.bool.isRequired,<br/>&nbsp;&nbsp;text:&nbsp;PropTypes.string.isRequired<br/>}<br/><br/>export&nbsp;default&nbsp;Todo
-        </div>
 
-        <div class="box">
+        <div class="box aspectList">
           components/TodoList.js<br/><br/>
 
 import&nbsp;React,&nbsp;{&nbsp;PropTypes&nbsp;}&nbsp;from&nbsp;'react'<br/>import&nbsp;Todo&nbsp;from&nbsp;'./Todo'<br/><br/>const&nbsp;TodoList&nbsp;=&nbsp;({&nbsp;todos,&nbsp;onTodoClick&nbsp;})&nbsp;=&gt;&nbsp;(<br/>&nbsp;&nbsp;&lt;ul&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;{todos.map(todo&nbsp;=&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;Todo<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key={todo.id}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{...todo}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onClick={()&nbsp;=&gt;&nbsp;onTodoClick(todo.id)}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;)}<br/>&nbsp;&nbsp;&lt;/ul&gt;<br/>)<br/><br/>TodoList.propTypes&nbsp;=&nbsp;{<br/>&nbsp;&nbsp;todos:&nbsp;PropTypes.arrayOf(PropTypes.shape({<br/>&nbsp;&nbsp;&nbsp;&nbsp;id:&nbsp;PropTypes.number.isRequired,<br/>&nbsp;&nbsp;&nbsp;&nbsp;completed:&nbsp;PropTypes.bool.isRequired,<br/>&nbsp;&nbsp;&nbsp;&nbsp;text:&nbsp;PropTypes.string.isRequired<br/>&nbsp;&nbsp;}).isRequired).isRequired,<br/>&nbsp;&nbsp;onTodoClick:&nbsp;PropTypes.func.isRequired<br/>}<br/><br/>export&nbsp;default&nbsp;TodoList
         </div>
 
-        <div class="box">
-          components/Link.js<br/><br/>
+        <div class="box aspectList">
+          components/Todo.js<br/><br/>
 
-
-import&nbsp;React,&nbsp;{&nbsp;PropTypes&nbsp;}&nbsp;from&nbsp;'react'<br/><br/>const&nbsp;Link&nbsp;=&nbsp;({&nbsp;active,&nbsp;children,&nbsp;onClick&nbsp;})&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;if&nbsp;(active)&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;&lt;span&gt;{children}&lt;/span&gt;<br/>&nbsp;&nbsp;}<br/><br/>&nbsp;&nbsp;return&nbsp;(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;a&nbsp;href=&quot;#&quot;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onClick={e&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.preventDefault()<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;onClick()<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{children}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/a&gt;<br/>&nbsp;&nbsp;)<br/>}<br/><br/>Link.propTypes&nbsp;=&nbsp;{<br/>&nbsp;&nbsp;active:&nbsp;PropTypes.bool.isRequired,<br/>&nbsp;&nbsp;children:&nbsp;PropTypes.node.isRequired,<br/>&nbsp;&nbsp;onClick:&nbsp;PropTypes.func.isRequired<br/>}<br/><br/>export&nbsp;default&nbsp;Link
-
+import&nbsp;React,&nbsp;{&nbsp;PropTypes&nbsp;}&nbsp;from&nbsp;'react'<br/><br/>const&nbsp;Todo&nbsp;=&nbsp;({&nbsp;onClick,&nbsp;completed,&nbsp;text&nbsp;})&nbsp;=&gt;&nbsp;(<br/>&nbsp;&nbsp;&lt;li<br/>&nbsp;&nbsp;&nbsp;&nbsp;onClick={onClick}<br/>&nbsp;&nbsp;&nbsp;&nbsp;style={{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;textDecoration:&nbsp;completed&nbsp;?&nbsp;'line-through'&nbsp;:&nbsp;'none'<br/>&nbsp;&nbsp;&nbsp;&nbsp;}}<br/>&nbsp;&nbsp;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;{text}<br/>&nbsp;&nbsp;&lt;/li&gt;<br/>)<br/><br/>Todo.propTypes&nbsp;=&nbsp;{<br/>&nbsp;&nbsp;onClick:&nbsp;PropTypes.func.isRequired,<br/>&nbsp;&nbsp;completed:&nbsp;PropTypes.bool.isRequired,<br/>&nbsp;&nbsp;text:&nbsp;PropTypes.string.isRequired<br/>}<br/><br/>export&nbsp;default&nbsp;Todo
         </div>
+
+
 
 
 
@@ -173,14 +195,14 @@ import&nbsp;React,&nbsp;{&nbsp;PropTypes&nbsp;}&nbsp;from&nbsp;'react'<br/><br/>
 
 <h2>Container Components</h2>
 
-<div class="box">
+<div class="box aspectFilter">
   containers/FilterLink.js<br/>
 <br/>
 import&nbsp;{&nbsp;connect&nbsp;}&nbsp;from&nbsp;'react-redux'<br/>import&nbsp;{&nbsp;setVisibilityFilter&nbsp;}&nbsp;from&nbsp;'../actions'<br/>import&nbsp;Link&nbsp;from&nbsp;'../components/Link'<br/><br/>const&nbsp;mapStateToProps&nbsp;=&nbsp;(state,&nbsp;ownProps)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;return&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;active:&nbsp;ownProps.filter&nbsp;===&nbsp;state.visibilityFilter<br/>&nbsp;&nbsp;}<br/>}<br/><br/>const&nbsp;mapDispatchToProps&nbsp;=&nbsp;(dispatch,&nbsp;ownProps)&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;return&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;onClick:&nbsp;()&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dispatch(setVisibilityFilter(ownProps.filter))<br/>&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;}<br/>}<br/><br/>const&nbsp;FilterLink&nbsp;=&nbsp;connect(<br/>&nbsp;&nbsp;mapStateToProps,<br/>&nbsp;&nbsp;mapDispatchToProps<br/>)(Link)<br/><br/>export&nbsp;default&nbsp;FilterLink
 
 </div>
-
-        <div class="box">
+<br/>
+        <div class="box aspectList">
           containers/VisibleTodoList.js<br/>
         <br/>
 
@@ -194,7 +216,7 @@ import&nbsp;{&nbsp;connect&nbsp;}&nbsp;from&nbsp;'react-redux'<br/>import&nbsp;{
 
       <td class="col5">
 <h2>Other Components</h2>
-        <div class="box">
+        <div class="box aspectAddTodo">
           containers/AddTodo.js<br/>
         <br/>
 
