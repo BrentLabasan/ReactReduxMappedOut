@@ -146,6 +146,14 @@ const&nbsp;visibilityFilter&nbsp;=&nbsp;(state&nbsp;=&nbsp;'SHOW_ALL',&nbsp;acti
 
       </td>
 
+      <td class="col5">
+<h2>Other Components</h2>
+        <div class="box aspectAddTodo">
+          containers/AddTodo.js<br/>
+        <br/>
+
+import&nbsp;React&nbsp;from&nbsp;'react'<br/>import&nbsp;{&nbsp;connect&nbsp;}&nbsp;from&nbsp;'react-redux'<br/>import&nbsp;{&nbsp;addTodo&nbsp;}&nbsp;from&nbsp;'../actions'<br/><br/>let&nbsp;AddTodo&nbsp;=&nbsp;({&nbsp;dispatch&nbsp;})&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;let&nbsp;input<br/><br/>&nbsp;&nbsp;return&nbsp;(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;form&nbsp;onSubmit={e&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.preventDefault()<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!input.value.trim())&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dispatch(addTodo(input.value))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input.value&nbsp;=&nbsp;''<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}}&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;ref={node&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input&nbsp;=&nbsp;node<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}}&nbsp;/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button&nbsp;type=&quot;submit&quot;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add&nbsp;Todo<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/button&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>&nbsp;&nbsp;)<br/>}<br/>AddTodo&nbsp;=&nbsp;connect()(AddTodo)<br/><br/>export&nbsp;default&nbsp;AddTodo
+      </td>
 
 
       <td class="col5">
@@ -171,14 +179,6 @@ import&nbsp;{&nbsp;connect&nbsp;}&nbsp;from&nbsp;'react-redux'<br/>import&nbsp;{
 
       </td>
 
-      <td class="col5">
-<h2>Other Components</h2>
-        <div class="box aspectAddTodo">
-          containers/AddTodo.js<br/>
-        <br/>
-
-import&nbsp;React&nbsp;from&nbsp;'react'<br/>import&nbsp;{&nbsp;connect&nbsp;}&nbsp;from&nbsp;'react-redux'<br/>import&nbsp;{&nbsp;addTodo&nbsp;}&nbsp;from&nbsp;'../actions'<br/><br/>let&nbsp;AddTodo&nbsp;=&nbsp;({&nbsp;dispatch&nbsp;})&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;let&nbsp;input<br/><br/>&nbsp;&nbsp;return&nbsp;(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;form&nbsp;onSubmit={e&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.preventDefault()<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!input.value.trim())&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dispatch(addTodo(input.value))<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input.value&nbsp;=&nbsp;''<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}}&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;ref={node&nbsp;=&gt;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input&nbsp;=&nbsp;node<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}}&nbsp;/&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button&nbsp;type=&quot;submit&quot;&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Add&nbsp;Todo<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/button&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/form&gt;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br/>&nbsp;&nbsp;)<br/>}<br/>AddTodo&nbsp;=&nbsp;connect()(AddTodo)<br/><br/>export&nbsp;default&nbsp;AddTodo
-      </td>
 
       <td class="col5">
         <h2>Presentation Components</h2>
